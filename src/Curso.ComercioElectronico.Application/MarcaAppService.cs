@@ -11,13 +11,13 @@ namespace Curso.ComercioElectronico.Application;
 public class MarcaAppService : IMarcaAppService
 {
     private readonly IMarcaRepository marcaRepository;
-     private readonly IMapper mapper;
+    private readonly IMapper mapper;
     private readonly IUnitOfWork unitOfWork;
-   
+
     private readonly ILogger<MarcaAppService> logger;
 
-    public MarcaAppService(IMarcaRepository marcaRepository, 
-        
+    public MarcaAppService(IMarcaRepository marcaRepository,
+
         ILogger<MarcaAppService> logger, IMapper mapper)
     {
         this.marcaRepository = marcaRepository;
@@ -27,7 +27,7 @@ public class MarcaAppService : IMarcaAppService
 
     public async Task<MarcaDto> CreateAsync(MarcaCrearActualizarDto marcaDto)
     {
-     
+
         logger.LogInformation("Crear Tipo Producto");
         //Mapeo Dto => Entidad. (Manual)
         //var marca = new Marca();
@@ -49,12 +49,16 @@ public class MarcaAppService : IMarcaAppService
     public async Task UpdateAsync(int id, MarcaCrearActualizarDto marcaDto)
     {
         var marca = await marcaRepository.GetByIdAsync(id);
-        if (marca == null){
+       
+        
+        if (marca == null)
+        {
             throw new ArgumentException($"La marca con el id: {id}, no existe");
         }
-        
-        var existeNombreMarca = await marcaRepository.ExisteNombre(marcaDto.Nombre,id);
-        if (existeNombreMarca){
+
+        var existeNombreMarca = await marcaRepository.ExisteNombre(marcaDto.Nombre, id);
+        if (existeNombreMarca)
+        {
             throw new ArgumentException($"Ya existe una marca con el nombre {marcaDto.Nombre}");
         }
 
@@ -65,6 +69,8 @@ public class MarcaAppService : IMarcaAppService
         await marcaRepository.UpdateAsync(marca);
         await marcaRepository.UnitOfWork.SaveChangesAsync();
 
+
+
         return;
     }
 
@@ -72,7 +78,8 @@ public class MarcaAppService : IMarcaAppService
     {
         //Reglas Validaciones... 
         var marca = await marcaRepository.GetByIdAsync(marcaId);
-        if (marca == null){
+        if (marca == null)
+        {
             throw new ArgumentException($"La marca con el id: {marcaId}, no existe");
         }
 
@@ -86,15 +93,17 @@ public class MarcaAppService : IMarcaAppService
     {
         var marcaList = marcaRepository.GetAll();
 
-        var marcaListDto =  from m in marcaList
-                            select new MarcaDto(){
-                                Id = m.Id,
-                                Nombre = m.Nombre
-                            };
+        var marcaListDto = from m in marcaList
+                           select new MarcaDto()
+                           {
+                               Id = m.Id,
+                               Nombre = m.Nombre
+                           };
 
         return marcaListDto.ToList();
     }
 
-    
+
+
+
 }
- 
