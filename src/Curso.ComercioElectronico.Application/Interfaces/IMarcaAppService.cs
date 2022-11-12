@@ -7,6 +7,7 @@ namespace Curso.ComercioElectronico.Application;
 public interface IMarcaAppService
 {
 
+    //Task<MarcaDto> GetByIdAsync(int id);
     ICollection<MarcaDto> GetAll();
 
     Task<MarcaDto> CreateAsync(MarcaCrearActualizarDto marca);

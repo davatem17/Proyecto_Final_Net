@@ -1,8 +1,9 @@
+using System.Diagnostics;
+using System.Reflection;
 using Curso.ComercioElectronico.Application;
 using Curso.ComercioElectronico.Domain;
 using Curso.ComercioElectronico.Infraestructure;
 using Microsoft.EntityFrameworkCore;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

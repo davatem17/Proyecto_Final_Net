@@ -6,6 +6,7 @@ namespace Curso.ComercioElectronico.Application;
   
 public class MarcaCrearActualizarDto
 {
+
  
     [Required]
     [StringLength(DominioConstantes.NOMBRE_MAXIMO)]
