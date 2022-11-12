@@ -19,12 +19,7 @@ builder.Services.AddScoped<ComercioElectronicoDbContext>();
 
 builder.Services.AddTransient<IMarcaRepository, MarcaRepository>();
 builder.Services.AddTransient<IMarcaAppService, MarcaAppService>();
-builder.Services.AddTransient<IAutorRepository, AutorRepository>();
-builder.Services.AddTransient<IAutorAppService, AutorAppService>();
-builder.Services.AddTransient<IEditorialRepository, EditorialRepository>();
-builder.Services.AddTransient<IEditorialAppService, EditorialAppService>();
-builder.Services.AddTransient<ILibroRepository, LibroRepository>();
-builder.Services.AddTransient<ILibroAppService, LibroAppService>();
+
 
 var app = builder.Build();
 
