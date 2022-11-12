@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Curso.ComercioElectronico.Domain;
+using FluentValidation;
+using Microsoft.Extensions.Logging;
 
 namespace Curso.ComercioElectronico.Application;
 
@@ -8,21 +10,40 @@ namespace Curso.ComercioElectronico.Application;
 public class MarcaAppService : IMarcaAppService
 {
     private readonly IMarcaRepository repository;
-    //private readonly IUnitOfWork unitOfWork;
+    private readonly IUnitOfWork unitOfWork;
+    private readonly IValidator<MarcaCrearActualizarDto> validator;
+    private readonly ILogger<MarcaAppService> logger;
 
-    public MarcaAppService(IMarcaRepository repository)
+    public MarcaAppService(IMarcaRepository repository, IUnitOfWork unitOfWork,
+        
+        ILogger<MarcaAppService> logger)
     {
         this.repository = repository;
-        //this.unitOfWork = unitOfWork;
+        this.unitOfWork = unitOfWork;
+        
     }
 
     public async Task<MarcaDto> CreateAsync(MarcaCrearActualizarDto marcaDto)
     {
-        
+     
+
         //Reglas Validaciones... 
+        //Opcion 1. Manual
+        //validator
+    
+   
+        //Opcion 2. 
+        //await validator.ValidateAndThrowAsync(marcaDto);
+
+
+        
         var existeNombreMarca = await repository.ExisteNombre(marcaDto.Nombre);
         if (existeNombreMarca){
-            throw new ArgumentException($"Ya existe una marca con el nombre {marcaDto.Nombre}");
+            
+            var msg = $"Ya existe una marca con el nombre {marcaDto.Nombre}";
+            logger.LogError(msg);
+
+            throw new ArgumentException(msg);
         }
  
         //Mapeo Dto => Entidad
@@ -31,14 +52,12 @@ public class MarcaAppService : IMarcaAppService
  
         //Persistencia objeto
         marca = await repository.AddAsync(marca);
-        //await unitOfWork.SaveChangesAsync();
+        await unitOfWork.SaveChangesAsync();
 
         //Mapeo Entidad => Dto
         var marcaCreada = new MarcaDto();
         marcaCreada.Nombre = marca.Nombre;
         marcaCreada.Id = marca.Id;
-
-        //TODO: Enviar un correo electronica... 
 
         return marcaCreada;
     }
@@ -60,7 +79,7 @@ public class MarcaAppService : IMarcaAppService
 
         //Persistencia objeto
         await repository.UpdateAsync(marca);
-        //await unitOfWork.SaveChangesAsync();
+        await repository.UnitOfWork.SaveChangesAsync();
 
         return;
     }
@@ -74,7 +93,7 @@ public class MarcaAppService : IMarcaAppService
         }
 
         repository.Delete(marca);
-        //await unitOfWork.SaveChangesAsync();
+        await repository.UnitOfWork.SaveChangesAsync();
 
         return true;
     }

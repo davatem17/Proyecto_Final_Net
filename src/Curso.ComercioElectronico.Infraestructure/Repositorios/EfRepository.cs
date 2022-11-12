@@ -6,16 +6,19 @@ using System.Linq.Expressions;
 namespace Curso.ComercioElectronico.Infraestructure;
  
 
-public abstract class EfRepository<TEntity> : IRepository<TEntity> where TEntity : class 
+public abstract class EfRepository<TEntity,TEntityId> : IRepository<TEntity,TEntityId> where TEntity : class 
 {
     protected readonly ComercioElectronicoDbContext _context;
+
+    public IUnitOfWork UnitOfWork => _context;
+
 
     public EfRepository(ComercioElectronicoDbContext context)
     {
         _context = context;
     }
 
-    public virtual async Task<TEntity> GetByIdAsync(int id)
+    public virtual async Task<TEntity> GetByIdAsync(TEntityId id)
     {
         return await _context.Set<TEntity>().FindAsync(id);
     }
@@ -33,7 +36,6 @@ public abstract class EfRepository<TEntity> : IRepository<TEntity> where TEntity
     {
 
         await _context.Set<TEntity>().AddAsync(entity);
-        await _context.SaveChangesAsync();
 
         return entity;
     }
@@ -41,7 +43,6 @@ public abstract class EfRepository<TEntity> : IRepository<TEntity> where TEntity
     public virtual async  Task UpdateAsync(TEntity entity)
     {
           _context.Update(entity);
-        await _context.SaveChangesAsync();
         
         return;
     }
@@ -49,7 +50,7 @@ public abstract class EfRepository<TEntity> : IRepository<TEntity> where TEntity
     public virtual void  Delete(TEntity entity)
     {
         _context.Set<TEntity>().Remove(entity);
-        _context.SaveChanges();
+        
  
     }
  
