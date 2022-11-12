@@ -234,3 +234,7 @@ C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElec
 C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\obj\Debug\net6.0\Curso.ComercioElectronico.HttpApi.pdb
 C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\obj\Debug\net6.0\Curso.ComercioElectronico.HttpApi.genruntimeconfig.cache
 C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\obj\Debug\net6.0\ref\Curso.ComercioElectronico.HttpApi.dll
+C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
+C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll

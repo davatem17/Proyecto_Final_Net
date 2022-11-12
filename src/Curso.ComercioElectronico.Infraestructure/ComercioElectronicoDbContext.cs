@@ -3,31 +3,39 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Curso.ComercioElectronico.Infraestructure;
 
-public class ComercioElectronicoDbContext:DbContext, IUnitOfWork
+public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
 {
 
     //Agregar sus entidades
-    public DbSet<Marca> Marcas {get;set;}
-
+    public DbSet<Marca> Marcas { get; set; }
 
  
-
+ 
+  
     public string DbPath { get; set; }
 
-    public ComercioElectronicoDbContext()
+    public ComercioElectronicoDbContext(DbContextOptions<ComercioElectronicoDbContext> options) : base(options)
     {
-        var folder = Environment.SpecialFolder.LocalApplicationData;
-        var path = Environment.GetFolderPath(folder);
-        DbPath = Path.Join(path, "curso.comercio-electronico-V1.db");
- 
     }
 
-    // The following configures EF to create a Sqlite database file in the
-    // special "local" folder for your platform.
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseSqlite($"Data Source={DbPath}");
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+         //#Ref: https://learn.microsoft.com/en-us/ef/core/providers/sqlite/limitations#query-limitations
+    
 
-} 
+           /*
+            modelBuilder.Entity<OrdenItem>()
+            .Property(e => e.Id)
+            .HasConversion<string>();
+          */
+
+          //TODO: Conversion. Ejemplos. Estado. ??
+      
+
+    }
+
+}
+
 
 
 

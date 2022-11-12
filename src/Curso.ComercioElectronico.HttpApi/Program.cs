@@ -13,12 +13,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-//Configuraciones de Dependencias
-builder.Services.AddScoped<ComercioElectronicoDbContext>();
+
 //builder.Services.AddScoped<IUnitOfWork, ComercioElectronicoDbContext>();
 
-builder.Services.AddTransient<IMarcaRepository, MarcaRepository>();
-builder.Services.AddTransient<IMarcaAppService, MarcaAppService>();
+builder.Services.AddInfraestructure(builder.Configuration);
+
+builder.Services.AddApplication(builder.Configuration);
+
 
 
 var app = builder.Build();
