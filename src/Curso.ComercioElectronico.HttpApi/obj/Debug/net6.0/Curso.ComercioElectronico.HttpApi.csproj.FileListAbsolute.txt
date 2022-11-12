@@ -238,3 +238,5 @@ C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElec
 C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\FluentValidation.dll
 C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\DAVATEM\Documents\banco_pichincha\Proyecto_Final\src\Curso.ComercioElectronico.HttpApi\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll

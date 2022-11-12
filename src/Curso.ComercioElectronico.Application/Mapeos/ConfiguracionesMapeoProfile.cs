@@ -10,7 +10,8 @@ public class ConfiguracionesMapeoProfile : Profile
     public ConfiguracionesMapeoProfile()
     {
         
-
+        CreateMap<MarcaCrearActualizarDto, Marca>();
+        CreateMap<Marca, MarcaDto>();
         //TODO: Agregar otros mapeos que se requieren...
 
     }
