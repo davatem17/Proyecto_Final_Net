@@ -3,15 +3,22 @@ using Curso.ComercioElectronico.Domain;
 
 namespace Curso.ComercioElectronico.Application;
 
- 
+
 public class MarcaDto
 {
     [Required]
-    public int Id {get;set;}
+    public int Id { get; set; }
 
     [Required]
     [StringLength(DominioConstantes.NOMBRE_MAXIMO)]
-    public string Nombre {get;set;}
+    public string Nombre { get; set; }
+
+    [Required]
+    [StringLength(DominioConstantes.PAISORIGEN_MAXIMO)]
+    public string PaisOrigen { get; set; }
+
+    [Required]
+    public bool PresenciaInternacional { get; set; }
+
 }
 
- 
