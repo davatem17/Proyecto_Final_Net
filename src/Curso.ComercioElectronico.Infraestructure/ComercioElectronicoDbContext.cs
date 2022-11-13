@@ -9,7 +9,7 @@ public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
     //Agregar sus entidades
     public DbSet<Marca> Marcas { get; set; }
 
- 
+    public DbSet<TipoProducto> TipoProductos { get; set; }
  
   
     public string DbPath { get; set; }

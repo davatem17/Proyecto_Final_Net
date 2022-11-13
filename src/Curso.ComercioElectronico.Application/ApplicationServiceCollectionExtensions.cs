@@ -12,6 +12,7 @@ public static class ApplicationServiceCollectionExtensions
     {
 
         services.AddTransient<IMarcaAppService, MarcaAppService>();
+        //services.AddTransient<ITipoProductoAppService, TipoProductoAppService>();
         
         //Configurar la inyección de todos los profile que existen en un Assembly
         services.AddAutoMapper(Assembly.GetExecutingAssembly());

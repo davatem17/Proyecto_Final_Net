@@ -28,7 +28,7 @@ public class MarcaAppService : IMarcaAppService
     public async Task<MarcaDto> CreateAsync(MarcaCrearActualizarDto marcaDto)
     {
 
-        logger.LogInformation("Crear Tipo Producto");
+        logger.LogInformation("Crear Marca");
         //Mapeo Dto => Entidad. (Manual)
         //var marca = new Marca();
         //tipoProducto.Nombre = tipoProductoDto.Nombre;

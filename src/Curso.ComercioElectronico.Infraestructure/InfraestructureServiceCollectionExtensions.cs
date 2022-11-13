@@ -11,6 +11,7 @@ public static class InfraestructureServiceCollectionExtensions {
     public static IServiceCollection AddInfraestructure(this IServiceCollection services, IConfiguration config) {
 
             services.AddTransient<IMarcaRepository, MarcaRepository>();
+            services.AddTransient<ITipoProductoRepository, TipoProductoRepository>();
            
 
             

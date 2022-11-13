@@ -12,6 +12,8 @@ public class ConfiguracionesMapeoProfile : Profile
         
         CreateMap<MarcaCrearActualizarDto, Marca>();
         CreateMap<Marca, MarcaDto>();
+        CreateMap<TipoProductoCrearActualizarDto, TipoProducto>();
+        CreateMap<TipoProducto, TipoProductoDto>();
         //TODO: Agregar otros mapeos que se requieren...
 
     }
