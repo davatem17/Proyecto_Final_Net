@@ -63,7 +63,7 @@ public class MarcaAppService : IMarcaAppService
         }
 
         //Mapeo Dto => Entidad
-        marca.Nombre = marcaDto.Nombre;
+        marca = mapper.Map(marcaDto,marca);
 
         //Persistencia objeto
         await marcaRepository.UpdateAsync(marca);
