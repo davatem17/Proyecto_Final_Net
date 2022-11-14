@@ -4,9 +4,8 @@ using AutoMapper;
 using FluentValidation;
 using Microsoft.Extensions.Logging;
 
-
 namespace Curso.ComercioElectronico.Application;
-/*
+
 public class TipoProductoAppService : ITipoProductoAppService
 {
     
@@ -14,7 +13,7 @@ public class TipoProductoAppService : ITipoProductoAppService
     private readonly IMapper mapper;
     private readonly IUnitOfWork unitOfWork;
     private readonly ILogger<TipoProductoAppService> logger;
-    private TipoProductoAppService(ITipoProductoRepository tipoProductoRepository,
+    public TipoProductoAppService(ITipoProductoRepository tipoProductoRepository,
             ILogger<TipoProductoAppService> logger, IMapper mapper)
     {
         this.tipoProductoRepository = tipoProductoRepository;
@@ -70,10 +69,7 @@ public class TipoProductoAppService : ITipoProductoAppService
         return tipoProductoListDto.ToList();
     }
     
-    public Task<TipoProductoDto> GetByIdAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
+
     
     public async Task UpdateAsync(int id, TipoProductoCrearActualizarDto tipoProductoDto)
     {
@@ -103,4 +99,3 @@ public class TipoProductoAppService : ITipoProductoAppService
     
 }
 
-*/

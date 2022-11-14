@@ -22,7 +22,7 @@ public class TipoProductoController : ControllerBase
 
         return tipoProductoAppService.GetAll();
     }
-    /*
+    
     [HttpPost]
     public async Task<TipoProductoDto> CreateAsync(TipoProductoCrearActualizarDto tipoProducto)
     {
@@ -46,6 +46,6 @@ public class TipoProductoController : ControllerBase
         return await tipoProductoAppService.DeleteAsync(tipoProductoId);
 
     }
-    */
+    
 
 }

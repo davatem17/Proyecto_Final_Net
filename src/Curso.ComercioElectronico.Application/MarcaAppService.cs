@@ -6,8 +6,6 @@ using Microsoft.Extensions.Logging;
 
 namespace Curso.ComercioElectronico.Application;
 
-
-
 public class MarcaAppService : IMarcaAppService
 {
     private readonly IMarcaRepository marcaRepository;
