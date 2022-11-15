@@ -12,6 +12,7 @@ public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
     public DbSet<TipoProducto> TipoProductos { get; set; }
 
     public DbSet<Bodega> Bodegas {get;set;}
+    public DbSet<Producto> Productos {get;set;}
  
   
     public string DbPath { get; set; }
@@ -23,7 +24,10 @@ public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
          //#Ref: https://learn.microsoft.com/en-us/ef/core/providers/sqlite/limitations#query-limitations
-    
+          modelBuilder.Entity<Producto>()
+            .Property(e => e.Precio)
+            .HasConversion<double>()
+            ;
 
            /*
             modelBuilder.Entity<OrdenItem>()

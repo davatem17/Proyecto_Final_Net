@@ -15,6 +15,8 @@ public class ConfiguracionesMapeoProfile : Profile
         CreateMap<TipoProducto, TipoProductoDto>();
         CreateMap<BodegaCrearActualizarDto, Bodega>();
         CreateMap<Bodega, BodegaDto>();
+        CreateMap<ProductoCrearActualizarDto, Producto>();
+        CreateMap<Producto, ProductoDto>();
         //TODO: Agregar otros mapeos que se requieren...
 
     }

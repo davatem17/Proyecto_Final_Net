@@ -13,6 +13,7 @@ public static class InfraestructureServiceCollectionExtensions {
             services.AddTransient<IMarcaRepository, MarcaRepository>();
             services.AddTransient<ITipoProductoRepository, TipoProductoRepository>();
             services.AddTransient<IBodegaRepository, BodegaRepository>();
+            services.AddTransient<IProductoRepository, ProductoRepository>();
 
             
             //Configuraciones de Dependencias
