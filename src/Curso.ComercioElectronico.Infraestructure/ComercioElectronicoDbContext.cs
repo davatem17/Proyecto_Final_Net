@@ -10,6 +10,8 @@ public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
     public DbSet<Marca> Marcas { get; set; }
 
     public DbSet<TipoProducto> TipoProductos { get; set; }
+
+    public DbSet<Bodega> Bodegas {get;set;}
  
   
     public string DbPath { get; set; }

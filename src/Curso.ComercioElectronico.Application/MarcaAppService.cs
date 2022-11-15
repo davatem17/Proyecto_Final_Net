@@ -47,8 +47,8 @@ public class MarcaAppService : IMarcaAppService
     public async Task UpdateAsync(int id, MarcaCrearActualizarDto marcaDto)
     {
         var marca = await marcaRepository.GetByIdAsync(id);
-       
-        
+
+
         if (marca == null)
         {
             throw new ArgumentException($"La marca con el id: {id}, no existe");
@@ -61,7 +61,7 @@ public class MarcaAppService : IMarcaAppService
         }
 
         //Mapeo Dto => Entidad
-        marca = mapper.Map(marcaDto,marca);
+        marca = mapper.Map(marcaDto, marca);
 
         //Persistencia objeto
         await marcaRepository.UpdateAsync(marca);
@@ -95,7 +95,9 @@ public class MarcaAppService : IMarcaAppService
                            select new MarcaDto()
                            {
                                Id = m.Id,
-                               Nombre = m.Nombre
+                               Nombre = m.Nombre,
+                               PaisOrigen = m.PaisOrigen,
+                               PresenciaInternacional = m.PresenciaInternacional
                            };
 
         return marcaListDto.ToList();

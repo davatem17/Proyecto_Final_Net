@@ -9,11 +9,12 @@ public class ConfiguracionesMapeoProfile : Profile
     //TipoProducto => TipoProductoDto
     public ConfiguracionesMapeoProfile()
     {
-        
         CreateMap<MarcaCrearActualizarDto, Marca>();
         CreateMap<Marca, MarcaDto>();
         CreateMap<TipoProductoCrearActualizarDto, TipoProducto>();
         CreateMap<TipoProducto, TipoProductoDto>();
+        CreateMap<BodegaCrearActualizarDto, Bodega>();
+        CreateMap<Bodega, BodegaDto>();
         //TODO: Agregar otros mapeos que se requieren...
 
     }
