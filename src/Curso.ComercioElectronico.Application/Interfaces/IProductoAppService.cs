@@ -22,6 +22,6 @@ public interface IProductoAppService
 
     Task UpdateAsync (Guid id, ProductoCrearActualizarDto producto);
 
-    Task<bool> DeleteAsync(Guid marcaId);
+    Task<bool> DeleteAsync(Guid productoId);
 }
  

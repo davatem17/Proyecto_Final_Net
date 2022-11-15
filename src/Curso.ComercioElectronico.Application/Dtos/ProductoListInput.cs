@@ -8,6 +8,7 @@ public class ProductoListInput {
     public int? TipoProductoId {get;set;}
     
     public int? MarcaId {get;set;}
+    public int? BodegaId {get;set;}
 
     public string? ValorBuscar {get;set;}
 
