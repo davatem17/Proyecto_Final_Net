@@ -103,7 +103,50 @@ public class MarcaAppService : IMarcaAppService
         return marcaListDto.ToList();
     }
 
+    public async Task<ListaPaginada<MarcaDto>> GetListAsync(MarcaListInput input)
+    {
+        var consulta = marcaRepository.GetAllIncluding();
 
+
+        if (!string.IsNullOrEmpty(input.BuscarNombre))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Nombre.Contains(input.BuscarNombre));
+        }
+        if (!string.IsNullOrEmpty(input.BuscarPaisOrigen))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.PaisOrigen.Contains(input.BuscarPaisOrigen));
+        }
+
+        //Ejecuatar linq. Total registros
+        var total = consulta.Count();
+
+        //Aplicar paginacion
+        consulta = consulta.Skip(input.Offset)
+                    .Take(input.Limit);
+
+        //Obtener el listado paginado. (Proyeccion)
+        var consultaListaMarcaDto = consulta
+                                        .Select(
+                                            m => new MarcaDto()
+                                            {
+                                                Id = m.Id,
+                                                Nombre = m.Nombre,
+                                                PaisOrigen = m.PaisOrigen,
+                                                PresenciaInternacional = m.PresenciaInternacional
+                                            }
+                                        );
+        var resultado = new ListaPaginada<MarcaDto>();
+        resultado.Total = total;
+        resultado.Lista = consultaListaMarcaDto.ToList();
+
+        return resultado;
+    }
 
 
 }

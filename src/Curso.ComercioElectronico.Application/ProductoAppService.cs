@@ -134,12 +134,19 @@ public class ProductoAppService : IProductoAppService
             consulta = consulta.Where(x => x.BodegaId == input.BodegaId);
         }
 
-        if (!string.IsNullOrEmpty(input.ValorBuscar))
+        if (!string.IsNullOrEmpty(input.Nombre))
         {
 
             //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
             //    x.Codigo.StartsWith(input.ValorBuscar));
-            consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Nombre.Contains(input.Nombre));
+        }
+        if (!string.IsNullOrEmpty(input.Observacion))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Observaciones.Contains(input.Observacion));
         }
 
         //Ejecuatar linq. Total registros

@@ -48,5 +48,9 @@ public class MarcaController : ControllerBase
         return await marcaAppService.DeleteAsync(marcaId);
 
     }
-
+    [HttpGet("list")]
+    public  Task<ListaPaginada<MarcaDto>> GetListAsync([FromQuery]MarcaListInput input)
+    {
+        return marcaAppService.GetListAsync(input);
+    }
 }

@@ -15,6 +15,7 @@ public interface IBodegaAppService
     Task UpdateAsync (int id, BodegaCrearActualizarDto bodega);
 
     Task<bool> DeleteAsync(int bodegaId);
+    Task<ListaPaginada<BodegaDto>> GetListAsync(BodegaListInput input);
 }
  
  

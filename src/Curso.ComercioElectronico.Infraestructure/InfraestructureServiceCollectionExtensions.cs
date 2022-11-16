@@ -15,7 +15,7 @@ public static class InfraestructureServiceCollectionExtensions {
             services.AddTransient<IBodegaRepository, BodegaRepository>();
             services.AddTransient<IProductoRepository, ProductoRepository>();
             services.AddTransient<IClienteRepository, ClienteRepository>();
-
+            services.AddTransient<IOrdenRepository, OrdenRepository>();
             
             //Configuraciones de Dependencias
             //Configurar DBContext

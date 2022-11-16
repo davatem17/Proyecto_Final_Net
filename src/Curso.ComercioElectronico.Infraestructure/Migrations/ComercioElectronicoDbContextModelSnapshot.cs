@@ -108,6 +108,72 @@ namespace Curso.ComercioElectronico.Infraestructure.Migrations
                     b.ToTable("Marcas");
                 });
 
+            modelBuilder.Entity("Curso.ComercioElectronico.Domain.Orden", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("ClienteId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Estado")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("FechaAnulacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Observaciones")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("Ordens");
+                });
+
+            modelBuilder.Entity("Curso.ComercioElectronico.Domain.OrdenItem", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasMaxLength(8)
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("Cantidad")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Observaciones")
+                        .HasMaxLength(200)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("OrdenId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("OrdenId1")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("Precio")
+                        .HasColumnType("REAL");
+
+                    b.Property<Guid>("ProductoId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrdenId1");
+
+                    b.HasIndex("ProductoId");
+
+                    b.ToTable("OrdenItems");
+                });
+
             modelBuilder.Entity("Curso.ComercioElectronico.Domain.Producto", b =>
                 {
                     b.Property<Guid>("Id")
@@ -183,6 +249,36 @@ namespace Curso.ComercioElectronico.Infraestructure.Migrations
                     b.ToTable("TipoProductos");
                 });
 
+            modelBuilder.Entity("Curso.ComercioElectronico.Domain.Orden", b =>
+                {
+                    b.HasOne("Curso.ComercioElectronico.Domain.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cliente");
+                });
+
+            modelBuilder.Entity("Curso.ComercioElectronico.Domain.OrdenItem", b =>
+                {
+                    b.HasOne("Curso.ComercioElectronico.Domain.Orden", "Orden")
+                        .WithMany("Items")
+                        .HasForeignKey("OrdenId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Curso.ComercioElectronico.Domain.Producto", "Producto")
+                        .WithMany()
+                        .HasForeignKey("ProductoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Orden");
+
+                    b.Navigation("Producto");
+                });
+
             modelBuilder.Entity("Curso.ComercioElectronico.Domain.Producto", b =>
                 {
                     b.HasOne("Curso.ComercioElectronico.Domain.Bodega", "Bodega")
@@ -208,6 +304,11 @@ namespace Curso.ComercioElectronico.Infraestructure.Migrations
                     b.Navigation("Marca");
 
                     b.Navigation("TipoProducto");
+                });
+
+            modelBuilder.Entity("Curso.ComercioElectronico.Domain.Orden", b =>
+                {
+                    b.Navigation("Items");
                 });
 #pragma warning restore 612, 618
         }

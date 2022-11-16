@@ -15,6 +15,8 @@ public interface IMarcaAppService
     Task UpdateAsync (int id, MarcaCrearActualizarDto marca);
 
     Task<bool> DeleteAsync(int marcaId);
+
+    Task<ListaPaginada<MarcaDto>> GetListAsync(MarcaListInput input);
 }
  
  

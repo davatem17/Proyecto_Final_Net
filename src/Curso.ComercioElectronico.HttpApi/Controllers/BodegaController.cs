@@ -46,5 +46,10 @@ public class BodegaController : ControllerBase
         return await bodegaAppService.DeleteAsync(bodegaId);
 
     }
+    [HttpGet("list")]
+    public  Task<ListaPaginada<BodegaDto>> GetListAsync([FromQuery]BodegaListInput input)
+    {
+        return bodegaAppService.GetListAsync(input);
+    }
 
 }

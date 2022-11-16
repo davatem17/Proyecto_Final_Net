@@ -9,7 +9,8 @@ public class ProductoListInput {
     
     public int? MarcaId {get;set;}
     public int? BodegaId {get;set;}
+    public string? Observacion {get;set;}
 
-    public string? ValorBuscar {get;set;}
+    public string? Nombre {get;set;}
 
 }

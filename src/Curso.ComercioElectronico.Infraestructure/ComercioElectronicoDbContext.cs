@@ -14,6 +14,8 @@ public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
     public DbSet<Bodega> Bodegas {get;set;}
     public DbSet<Producto> Productos {get;set;}
     public DbSet<Cliente> Clientes {get;set;}
+    public DbSet<Orden> Ordens {get;set;}
+    public DbSet<OrdenItem> OrdenItems {get;set;}
  
   
     public string DbPath { get; set; }
@@ -37,7 +39,9 @@ public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
           */
 
           //TODO: Conversion. Ejemplos. Estado. ??
-      
+          modelBuilder.Entity<OrdenItem>()
+            .Property(e => e.Precio)
+            .HasConversion<double>();
 
     }
 

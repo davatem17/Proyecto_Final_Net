@@ -46,6 +46,11 @@ public class ClienteController : ControllerBase
         return await clienteAppService.DeleteAsync(clienteId);
 
     }
+    [HttpGet("list")]
+    public  Task<ListaPaginada<ClienteDto>> GetListAsync([FromQuery]ClienteListInput input)
+    {
+        return clienteAppService.GetListAsync(input);
+    }
 
     
 

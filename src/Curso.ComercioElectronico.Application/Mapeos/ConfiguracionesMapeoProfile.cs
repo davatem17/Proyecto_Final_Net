@@ -19,6 +19,11 @@ public class ConfiguracionesMapeoProfile : Profile
         CreateMap<Producto, ProductoDto>();
         CreateMap<ClienteCrearActualizarDto, Cliente>();
         CreateMap<Cliente, ClienteDto>();
+        CreateMap<OrdenCrearDto, Orden>();
+        CreateMap<OrdenActualizarDto, Orden>();
+        CreateMap<OrdenItemCrearActualizarDto, OrdenItem>();
+        CreateMap<OrdenItem, OrdenItemDto>();
+        CreateMap<Orden, OrdenDto>();
         //TODO: Agregar otros mapeos que se requieren...
 
     }

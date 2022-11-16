@@ -14,4 +14,5 @@ public interface IClienteAppService
     Task UpdateAsync(Guid clienteId, ClienteCrearActualizarDto clienteDto);
 
     Task<bool> DeleteAsync(Guid clienteId);
+    Task<ListaPaginada<ClienteDto>> GetListAsync(ClienteListInput input);
 }

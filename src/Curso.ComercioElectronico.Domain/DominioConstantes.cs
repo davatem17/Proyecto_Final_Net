@@ -14,5 +14,7 @@ public static class DominioConstantes{
     public const int TELEFONO_MAXIMO = 15;
     public const int OBSERVACIONESP_MAXIMO = 200;
     public const int DIRECCION_MAXIMO = 200;
-
+    public const int STRINGID = 8;
+    public const int OBSERVACIONESORDEN_MAXIMO = 200;
+    public const int OBSERVACIONESORDENITEMS_MAXIMO = 200;
 }

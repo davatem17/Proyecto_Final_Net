@@ -48,16 +48,16 @@ public class ClienteAppService : IClienteAppService
     {
         var clienteList = clienteRepository.GetAll();
         var clienteListDto = from c in clienteList
-                            select new ClienteDto()
-                            {
-                                Id = c.Id,
-                                Nombre = c.Nombre,
-                                Apellido = c.Apellido,
-                                Cedula = c.Cedula,
-                                CorreoElectronico = c.CorreoElectronico,
-                                Direccion = c.Direccion,
-                                Telefono = c.Telefono
-                            };
+                             select new ClienteDto()
+                             {
+                                 Id = c.Id,
+                                 Nombre = c.Nombre,
+                                 Apellido = c.Apellido,
+                                 Cedula = c.Cedula,
+                                 CorreoElectronico = c.CorreoElectronico,
+                                 Direccion = c.Direccion,
+                                 Telefono = c.Telefono
+                             };
         return clienteListDto.ToList();
     }
 
@@ -102,6 +102,60 @@ public class ClienteAppService : IClienteAppService
         await clienteRepository.UnitOfWork.SaveChangesAsync();
 
         return true;
+    }
+    public async Task<ListaPaginada<ClienteDto>> GetListAsync(ClienteListInput input)
+    {
+        var consulta = clienteRepository.GetAllIncluding();
+
+
+        if (!string.IsNullOrEmpty(input.BuscarNombre))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Nombre.Contains(input.BuscarNombre));
+        }
+        if (!string.IsNullOrEmpty(input.BuscarApellido))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Apellido.Contains(input.BuscarApellido));
+        }
+        if (!string.IsNullOrEmpty(input.BuscarCedula))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Cedula.Contains(input.BuscarCedula));
+        }
+
+        //Ejecuatar linq. Total registros
+        var total = consulta.Count();
+
+        //Aplicar paginacion
+        consulta = consulta.Skip(input.Offset)
+                    .Take(input.Limit);
+
+        //Obtener el listado paginado. (Proyeccion)
+        var consultaListaClientesDto = consulta
+                                        .Select(
+                                            c => new ClienteDto()
+                                            {
+                                                Id = c.Id,
+                                                Nombre = c.Nombre,
+                                                Apellido = c.Apellido,
+                                                Cedula = c.Cedula,
+                                                CorreoElectronico = c.CorreoElectronico,
+                                                Direccion = c.Direccion,
+                                                Telefono = c.Telefono
+                                            }
+                                        );
+        var resultado = new ListaPaginada<ClienteDto>();
+        resultado.Total = total;
+        resultado.Lista = consultaListaClientesDto.ToList();
+
+        return resultado;
     }
 
 }

@@ -8,7 +8,7 @@ namespace Curso.ComercioElectronico.Application;
 
 public class BodegaAppService : IBodegaAppService
 {
-     private readonly IBodegaRepository bodegaRepository;
+    private readonly IBodegaRepository bodegaRepository;
     private readonly IMapper mapper;
     private readonly IUnitOfWork unitOfWork;
     private readonly ILogger<BodegaAppService> logger;
@@ -31,7 +31,7 @@ public class BodegaAppService : IBodegaAppService
         bodega = await bodegaRepository.AddAsync(bodega);
         await bodegaRepository.UnitOfWork.SaveChangesAsync();
         //Mapeo Entidad => Dto
-        
+
         var bodegaCreada = mapper.Map<BodegaDto>(bodega);
         return bodegaCreada;
     }
@@ -56,13 +56,13 @@ public class BodegaAppService : IBodegaAppService
         var bodegaList = bodegaRepository.GetAll();
 
         var bodegaListDto = from b in bodegaList
-                           select new BodegaDto()
-                           {
-                               Id = b.Id,
-                               Nombre = b.Nombre,
-                               Ubicacion = b.Ubicacion,
-                               Telefono = b.Telefono
-                           };
+                            select new BodegaDto()
+                            {
+                                Id = b.Id,
+                                Nombre = b.Nombre,
+                                Ubicacion = b.Ubicacion,
+                                Telefono = b.Telefono
+                            };
 
         return bodegaListDto.ToList();
     }
@@ -91,5 +91,49 @@ public class BodegaAppService : IBodegaAppService
         await bodegaRepository.UnitOfWork.SaveChangesAsync();
 
         return;
+    }
+    public async Task<ListaPaginada<BodegaDto>> GetListAsync(BodegaListInput input)
+    {
+        var consulta = bodegaRepository.GetAllIncluding();
+
+
+        if (!string.IsNullOrEmpty(input.Nombre))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Nombre.Contains(input.Nombre));
+        }
+        if (!string.IsNullOrEmpty(input.Ubicacion))
+        {
+
+            //consulta = consulta.Where(x => x.Nombre.Contains(input.ValorBuscar) ||
+            //    x.Codigo.StartsWith(input.ValorBuscar));
+            consulta = consulta.Where(x => x.Ubicacion.Contains(input.Ubicacion));
+        }
+
+        //Ejecuatar linq. Total registros
+        var total = consulta.Count();
+
+        //Aplicar paginacion
+        consulta = consulta.Skip(input.Offset)
+                    .Take(input.Limit);
+
+        //Obtener el listado paginado. (Proyeccion)
+        var consultaListaBodegaDto = consulta
+                                        .Select(
+                                            b => new BodegaDto()
+                                            {
+                                                Id = b.Id,
+                                                Nombre = b.Nombre,
+                                                Ubicacion = b.Ubicacion,
+                                                Telefono = b.Telefono
+                                            }
+                                        );
+        var resultado = new ListaPaginada<BodegaDto>();
+        resultado.Total = total;
+        resultado.Lista = consultaListaBodegaDto.ToList();
+
+        return resultado;
     }
 }
