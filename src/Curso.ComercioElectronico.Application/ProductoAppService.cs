@@ -190,15 +190,3 @@ public class ProductoAppService : IProductoAppService
         return;
     }
 }
-/*
-logger.LogInformation("Crear Producto");
-        //Mapeo Dto => Entidad
-        //Automatico
-        var producto = mapper.Map<Producto>(productoDto);
-        //Persistencia objeto
-        producto = await productoRepository.AddAsync(producto);
-        await productoRepository.UnitOfWork.SaveChangesAsync();
-        //Mapeo Entidad => Dto
-        //var productoCreado = mapper.Map<ProductoDto>(producto);
-        return await GetByIdAsync(producto.Id);
-*/

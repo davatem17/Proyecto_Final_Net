@@ -13,6 +13,7 @@ public class ComercioElectronicoDbContext : DbContext, IUnitOfWork
 
     public DbSet<Bodega> Bodegas {get;set;}
     public DbSet<Producto> Productos {get;set;}
+    public DbSet<Cliente> Clientes {get;set;}
  
   
     public string DbPath { get; set; }
